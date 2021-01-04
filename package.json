@@ -1,5 +1,5 @@
 {
-  "name": "expressjs-mongodb",
+  "name": "jumga-server-demo",
   "version": "0.0.0",
   "private": true,
   "main": "jest.config.js",
@@ -7,7 +7,7 @@
     "test": "tests"
   },
   "scripts": {
-    "dev": "DEBUG=expressjs-mongodb:* nodemon --exec babel-node src/bin/www.js",
+    "dev": "DEBUG=jumga-server-demo:* nodemon --exec babel-node src/bin/www.js",
     "release": "npm run clean && npm run build-app && npm run start",
     "clean": "rm -rf dist && mkdir dist",
     "build": "npm run clean && npm run build-app",
@@ -48,7 +48,6 @@
     "jest-chain": "^1.1.5",
     "jest-extended": "^0.11.5",
     "nodemon": "^2.0.4",
-    "superagent": "^6.1.0",
     "supertest": "^4.0.2"
   }
 }
