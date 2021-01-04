@@ -10,6 +10,11 @@
 
 [![Codacy Badge](https://app.codacy.com/project/badge/Coverage/e6ea033a960d4300b3c1c7941c9ddc8a)](https://www.codacy.com/gh/okezieobi/jumga-server-demo/dashboard?utm_source=github.com&utm_medium=referral&utm_content=okezieobi/jumga-server-demo&utm_campaign=Badge_Coverage)
 
-# Jumga server demo
+# Jumga server demo live app
+https://jumga-demo.herokuapp.com/api-docs
+
+## Frontend repo
+https://github.com/okezieobi/jumga-client-demo
+
 ## Stack
 ExpressJS/NodeJS, MongoDB/Mongoose, Jest
