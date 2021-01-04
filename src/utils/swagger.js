@@ -3,12 +3,12 @@ import swaggerJSDoc from 'swagger-jsdoc';
 const swaggerDefinition = {
   openapi: '3.0.0',
   info: {
-    title: 'Template REST API', // Title of the documentation
+    title: 'Jumga REST API', // Title of the documentation
     version: '1.0.0', // Version of the app
-    description: 'REST API for template app', // short description of the app
+    description: 'REST API for Jumga, an e-commerce demo web app', // short description of the app
   },
   servers: [
-    { url: '', description: 'Deployed server on Heroku' },
+    { url: 'https://jumga-demo.herokuapp.com/api/v1', description: 'Deployed server on Heroku' },
     { url: 'http://localhost:3000/api/v1', description: 'Local development/testing server' },
   ],
   components: {
