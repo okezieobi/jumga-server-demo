@@ -3,17 +3,20 @@ import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 import cors from 'cors';
 import swaggerUI from 'swagger-ui-express';
+import multer from 'multer';
 
 import routes from './routes/router';
 import swaggerSpec from './utils/swagger';
 
 const app = express();
+const upload = multer();
 
 app.use(cors());
 app.use(logger('dev'));
 app.use(json());
 app.use(urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(upload.array());
 app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerSpec));
 
 app.use('/api/v1', routes(Router));

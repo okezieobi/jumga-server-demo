@@ -2,22 +2,22 @@ import bcrypt from '../utils/bcrypt';
 
 export default (Schema) => {
   const schema = new Schema({
+    avatar: {
+      type: String,
+    },
     fullName: {
       type: String,
       required: true,
-      length: 512,
     },
     username: {
       type: String,
       required: true,
       unique: true,
-      length: 512,
     },
     email: {
       type: String,
       required: true,
       unique: true,
-      length: 512,
     },
     password: {
       type: String,

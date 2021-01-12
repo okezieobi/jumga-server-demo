@@ -7,7 +7,7 @@ paths:
       requestBody:
         required: true
         content:
-          application/json:
+          multipart/form-data:
             schema:
               $ref: '#/components/schemas/signup'
       responses:          # server responses
@@ -19,6 +19,7 @@ paths:
 components:        # Schema definition for request body
  schemas:
   signup:
+    type: object
     properties:
           fullName:
             type: string
@@ -28,6 +29,9 @@ components:        # Schema definition for request body
             type: string
           password:
             type: string
+          avatar:
+            type: string
+            format: binary
     required:
       - fullName
       - email
