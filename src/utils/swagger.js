@@ -28,6 +28,7 @@ const options = {
   swaggerDefinition,
   // path to the API docs
   apis: ['./docs/**/*.yml'],
+  withCredentials: true,
 };
 // initialize swagger-jsdoc
 export default swaggerJSDoc(options);
