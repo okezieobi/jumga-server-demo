@@ -1,9 +1,8 @@
 import bcrypt from '../utils/bcrypt';
 
 export default class UserServices {
-  constructor({ User }, cloudinary) {
+  constructor({ User }) {
     this.model = User;
-    this.cloudinary = cloudinary;
   }
 
   async create(arg) {
@@ -13,12 +12,6 @@ export default class UserServices {
       .exists({ $or: [{ username: argument.username }, { email: argument.email }] });
     if (userExists) data = { message: 'User already exists with either email or username, please sign in', status: 406 };
     else {
-      if (argument.avatar) {
-        this.cloudinary.uploader.upload(argument.avatar)
-          .then((result) => {
-            argument.avatar = result.url;
-          });
-      }
       await this.model.create(argument);
       const user = await this.model
         .findOne({ $and: [{ username: argument.username }, { email: argument.email }] },
