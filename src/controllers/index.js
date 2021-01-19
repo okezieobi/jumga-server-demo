@@ -1,6 +1,6 @@
 import services from '../services';
 import UserController from './user';
-import EntityController from './entity';
+import StoreController from './store';
 
 const handleServiceOutput = (data, { locals }, next) => {
   if (data.message) throw data;
@@ -11,8 +11,8 @@ const handleServiceOutput = (data, { locals }, next) => {
   }
 };
 const user = new UserController(services, handleServiceOutput);
-const entity = new EntityController(services, handleServiceOutput);
+const store = new StoreController(services, handleServiceOutput);
 
 export default {
-  user, entity, User: UserController,
+  user, store, User: UserController,
 };

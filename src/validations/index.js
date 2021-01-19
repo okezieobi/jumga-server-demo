@@ -1,8 +1,8 @@
 import { validationResult, checkSchema } from 'express-validator';
 
 import UserSchema from './user';
-import EntitySchema from './entity';
-// import fileUpload from '../utils/fileUpload';
+import StoreSchema from './store';
+import fileUpload from '../utils/fileUpload';
 
 const handleValidationErr = (req, res, next) => {
   const errors = validationResult(req);
@@ -10,15 +10,13 @@ const handleValidationErr = (req, res, next) => {
   else next({ messages: errors.array(), status: 400 });
 };
 
-/*
 const handleFileUploadErr = ({ file }, res, next) => {
   if (file) next();
   else next({ message: 'File upload is required', status: 400 });
 };
-*/
 
 const userSchema = new UserSchema(checkSchema);
-const entitySchema = new EntitySchema(checkSchema);
+const storeSchema = new StoreSchema(checkSchema);
 
 export default {
   user: {
@@ -26,8 +24,8 @@ export default {
     login: [userSchema.validateLogin, handleValidationErr],
     jwt: [userSchema.validateJWT, handleValidationErr],
   },
-  entity: {
-    create: [entitySchema.validateInput, handleValidationErr],
-    id: [entitySchema.validateEntryId, handleValidationErr],
+  store: {
+    create: [fileUpload.image.single('store-image'), handleFileUploadErr, storeSchema.validateInput, handleValidationErr],
+    id: [storeSchema.validateEntryId, handleValidationErr],
   },
 };
