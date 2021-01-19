@@ -10,22 +10,24 @@ const handleValidationErr = (req, res, next) => {
   else next({ messages: errors.array(), status: 400 });
 };
 
+/*
 const handleFileUploadErr = ({ file }, res, next) => {
   if (file) next();
   else next({ message: 'File upload is required', status: 400 });
 };
+*/
 
 const userSchema = new UserSchema(checkSchema);
 const storeSchema = new StoreSchema(checkSchema);
 
 export default {
   user: {
-    signup: [userSchema.validateSignup, handleValidationErr],
+    signup: [fileUpload.image.single('avatar'), userSchema.validateSignup, handleValidationErr],
     login: [userSchema.validateLogin, handleValidationErr],
     jwt: [userSchema.validateJWT, handleValidationErr],
   },
   store: {
-    create: [fileUpload.image.single('store-image'), handleFileUploadErr, storeSchema.validateInput, handleValidationErr],
+    create: [fileUpload.image.single('picture'), storeSchema.validateInput, handleValidationErr],
     id: [storeSchema.validateEntryId, handleValidationErr],
   },
 };

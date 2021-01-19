@@ -7,4 +7,6 @@ const databaseURL = process.env.NODE_ENV === 'test' ? process.env.TEST_DATABASE_
 export default {
   databaseURL,
   jwtSecret: process.env.JWT_SECRET,
+  avatar: process.env.AVATAR_PLACEHOLDER,
+  storePic: process.env.STORE_PIC,
 };

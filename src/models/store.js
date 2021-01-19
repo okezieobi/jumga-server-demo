@@ -1,4 +1,4 @@
-export default (Schema) => {
+export default (Schema, env) => {
   const schema = new Schema({
     name: {
       type: String,
@@ -10,7 +10,7 @@ export default (Schema) => {
     },
     picture: {
       type: String,
-      required: true,
+      default: env.storePic,
     },
     userId: {
       type: Schema.Types.ObjectId,

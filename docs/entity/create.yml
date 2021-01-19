@@ -1,28 +1,36 @@
 paths:
-  /entities/:                # path of the user from your endpoint
+  /stores:                # path of the user from your endpoint
     post:                 # endpoint request type (post request)
       tags:               # Tag property
         - Entry            # Value of the tag
-      summary: creates a diary entity as an authenticated user
+      summary: creates a an unapproved store as an authorized user
       security:
        - cookieAuth: []
       requestBody:
         required: true
         content:
-          application/json:
+          multipart/form-data:
             schema:
               $ref: '#/components/schemas/create'
       responses:          # server responses
         201:
-          description: An object with entity details
+          description: An object with store details
+        400:
+          description: Error message array in error property of response body
+        401:
+          description: Error message object in error property of response body
 components:        # Schema definition for request body
  schemas:
   create:
+    type: object
     properties:
-          title:
+          name:
             type: string
-          body:
+          description:
             type: string
+          picture:
+            type: string
+            format: binary
     required:
-      - title
-      - body
+      - name
+      - description

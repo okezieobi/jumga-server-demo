@@ -6,8 +6,8 @@ import storeSchema from './store';
 import env from '../utils/env';
 
 const models = {
-  User: model('User', userSchema(Schema)),
-  Entity: model('Store', storeSchema(Schema)),
+  User: model('User', userSchema(Schema, env)),
+  Store: model('Store', storeSchema(Schema, env)),
 };
 mongoose.connect(env.databaseURL,
   {

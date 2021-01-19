@@ -1,9 +1,10 @@
 import bcrypt from '../utils/bcrypt';
 
-export default (Schema) => {
+export default (Schema, env) => {
   const schema = new Schema({
     avatar: {
       type: String,
+      default: env.avatar,
     },
     fullName: {
       type: String,

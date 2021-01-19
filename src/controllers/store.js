@@ -1,7 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 export default class StoreController {
-  constructor({ entity }, handleServiceOutput) {
-    this.service = entity;
+  constructor({ store }, handleServiceOutput) {
+    this.service = store;
     this.createOne = this.createOne.bind(this);
     this.findAll = this.findAll.bind(this);
     this.updateOne = this.updateOne.bind(this);
@@ -9,8 +9,12 @@ export default class StoreController {
     this.handleServiceOutput = handleServiceOutput;
   }
 
-  createOne({ body, file: { path } }, res, next) {
-    this.service.create({ ...body, picture: path, userId: res.locals.userId })
+  createOne({ body, file }, res, next) {
+    this.service.create({
+      ...body,
+      picture: file ? file.path : undefined,
+      userId: res.locals.userId,
+    })
       .then((data) => this.handleServiceOutput(data, res, next)).catch(next);
   }
 
