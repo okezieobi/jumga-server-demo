@@ -1,5 +1,5 @@
 paths:
-  /auth/login/:                # path of the user from your endpoint
+  /auth/login:                # path of the user from your endpoint
     post:                 # endpoint request type (post request)
       tags:               # Tag property
         - User            # Value of the tag
