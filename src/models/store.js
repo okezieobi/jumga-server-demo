@@ -1,19 +1,25 @@
-export default (Schema) => {
+export default (Schema, env) => {
   const schema = new Schema({
-    title: {
+    name: {
       type: String,
       required: true,
-      length: 512,
     },
-    body: {
+    description: {
       type: String,
       required: true,
-      length: 512,
+    },
+    picture: {
+      type: String,
+      default: env.storePic,
     },
     userId: {
       type: Schema.Types.ObjectId,
       required: true,
       ref: 'User',
+    },
+    approved: {
+      type: Boolean,
+      default: false,
     },
   }, { timestamps: true });
 

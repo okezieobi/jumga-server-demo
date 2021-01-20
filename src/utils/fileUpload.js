@@ -22,7 +22,7 @@ export default {
   image: multer({
     storage,
     fileFilter: (req, file, callback) => {
-      if (file.mimetype === 'image/png' || file.mimetype === 'image/jpeg' || file.mimetype === 'image/jpg' || file.mimetype === 'image/gif' || file.mimetype === 'image/bmp') {
+      if (file.mimetype === 'image/png' || file.mimetype === 'image/svg' || file.mimetype === 'image/jpeg' || file.mimetype === 'image/jpg' || file.mimetype === 'image/gif' || file.mimetype === 'image/bmp') {
         callback(null, true);
       } else {
         callback({ message: 'Only images are allowed', status: 400 }, false);

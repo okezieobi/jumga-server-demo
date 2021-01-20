@@ -1,10 +1,10 @@
 import models from '../models';
 import UserServices from './user';
-import EntityServices from './entity';
+import StoreServices from './store';
 
 const user = new UserServices(models);
-const entity = new EntityServices(models);
+const store = new StoreServices(models);
 
 export default {
-  user, entity,
+  user, store,
 };

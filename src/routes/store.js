@@ -1,6 +1,6 @@
 export default (Router, handleResponse,
   {
-    entity: {
+    store: {
       createOne, getAll, verifyOne, updateOne,
     },
   }) => {

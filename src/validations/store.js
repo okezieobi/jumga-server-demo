@@ -1,31 +1,31 @@
 export default class EntitySchema {
   constructor(checkSchema) {
     this.validateInput = checkSchema({
-      title: {
+      name: {
         in: ['body'],
         isLength: {
-          errorMessage: 'Entity title should be at most 256 characters long',
-          options: { min: 1, max: 256 },
-        },
-        isString: {
-          errorMessage: 'Entity title must be string data type',
-        },
-        exists: {
-          errorMessage: 'Entity title is required',
-          options: { checkFalsy: true },
-        },
-      },
-      body: {
-        in: ['body'],
-        isLength: {
-          errorMessage: 'Entity body should be at least 1 character long',
+          errorMessage: 'Store name should be at least 1 character long',
           options: { min: 1 },
         },
         isString: {
-          errorMessage: 'Entity body must be string data type',
+          errorMessage: 'Store name must be string data type',
         },
         exists: {
-          errorMessage: 'Entity body is required',
+          errorMessage: 'Store name is required',
+          options: { checkFalsy: true },
+        },
+      },
+      description: {
+        in: ['body'],
+        isLength: {
+          errorMessage: 'Store should be at least 1 character long',
+          options: { min: 1 },
+        },
+        isString: {
+          errorMessage: 'Store must be string data type',
+        },
+        exists: {
+          errorMessage: 'Store is required',
           options: { checkFalsy: true },
         },
       },

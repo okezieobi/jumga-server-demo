@@ -9,8 +9,8 @@ export default class UserController {
     this.handleServiceOutput = handleServiceOutput;
   }
 
-  signup({ body, files: { avatar } }, res, next) {
-    this.service.create({ ...body, avatar })
+  signup({ body, file }, res, next) {
+    this.service.create({ ...body, avatar: file ? file.path : undefined })
       .then((data) => this.handleServiceOutput(data, res, next)).catch(next);
   }
 

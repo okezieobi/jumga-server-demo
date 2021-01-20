@@ -1,7 +1,7 @@
 /* eslint-disable no-underscore-dangle */
-export default class EntityController {
-  constructor({ entity }, handleServiceOutput) {
-    this.service = entity;
+export default class StoreController {
+  constructor({ store }, handleServiceOutput) {
+    this.service = store;
     this.createOne = this.createOne.bind(this);
     this.findAll = this.findAll.bind(this);
     this.updateOne = this.updateOne.bind(this);
@@ -9,8 +9,12 @@ export default class EntityController {
     this.handleServiceOutput = handleServiceOutput;
   }
 
-  createOne({ body: { title, body } }, res, next) {
-    this.service.create({ title, body, userId: res.locals.userId })
+  createOne({ body, file }, res, next) {
+    this.service.create({
+      ...body,
+      picture: file ? file.path : undefined,
+      userId: res.locals.userId,
+    })
       .then((data) => this.handleServiceOutput(data, res, next)).catch(next);
   }
 
@@ -20,14 +24,14 @@ export default class EntityController {
   }
 
   findOneById({ params: { id } }, res, next) {
-    this.service.findOneByOwner({ userId: res.locals.userId, _id: id })
+    this.service.findOne({ userId: res.locals.userId, _id: id })
       .then((data) => this.handleServiceOutput(data, res, next)).catch(next);
   }
 
-  updateOne({ body: { title, body } }, res, next) {
+  updateOne({ body, file: { path } }, res, next) {
     this.service.updateOne({
-      title: title || res.locals.data.entity.title,
-      body: body || res.locals.data.entity.body,
+      ...body,
+      picture: path,
       userId: res.locals.userId,
       _id: res.locals.data.entity._id,
     }).then((data) => this.handleServiceOutput(data, res, next)).catch(next);

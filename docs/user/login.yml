@@ -1,5 +1,5 @@
 paths:
-  /auth/login/:                # path of the user from your endpoint
+  /auth/login:                # path of the user from your endpoint
     post:                 # endpoint request type (post request)
       tags:               # Tag property
         - User            # Value of the tag
@@ -7,7 +7,7 @@ paths:
       requestBody:
         required: true
         content:
-          application/json:
+          application/x-www-form-urlencoded:
             schema:
               $ref: '#/components/schemas/login'
       responses:          # server responses
@@ -27,6 +27,7 @@ paths:
 components:        # Schema definition for request body
  schemas:
   login:
+    type: object
     properties:
           user:
             type: string
